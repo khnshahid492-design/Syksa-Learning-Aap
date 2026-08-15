@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SYKSA Learning App — live CBSE and NCERT classes for Classes 5 to 10." />
+  <title>SYKSA Learning App | Learn Better.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+<style>
+
+/* =========================================================
+   IMPROVED PROGRAMS SECTION
+========================================================= */
+
+.programs-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(157,255,0,.08), transparent 38%),
+        #030503;
+    padding: 105px 0 0;
+}
+
+.programs-wrap {
+    width: min(100% - 70px, 1450px);
+    margin: 0 auto;
+}
+
+.programs-heading {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 70px;
+    align-items: end;
+    margin-bottom: 55px;
+}
+
+.programs-heading h2 {
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: .88;
+    letter-spacing: -5px;
+    font-weight: 900;
+}
+
+.programs-heading h2 span {
+    color: var(--green);
+}
+
+.programs-heading p {
+    max-width: 520px;
+    color: #929792;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.program-stage {
+    position: relative;
+    min-height: 430px;
+}
+
+.program-track {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 5px 5px 35px;
+    scrollbar-width: none;
+}
+
+.program-track::-webkit-scrollbar {
+    display: none;
+}
+
+.program-card {
+    flex: 0 0 calc((100% - 36px) / 3);
+    min-height: 365px;
+    scroll-snap-align: start;
+    position: relative;
+    padding: 27px;
+    border-radius: 25px;
+    border: 1px solid rgba(157,255,0,.16);
+    background:
+        linear-gradient(145deg, rgba(18,25,18,.96), rgba(5,8,5,.98));
+    overflow: hidden;
+    transition: transform .45s ease, border-color .45s ease, box-shadow .45s ease;
+}
+
+.program-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -70px;
+    top: -70px;
+    border-radius: 50%;
+    background: rgba(157,255,0,.07);
+    filter: blur(2px);
+}
+
+.program-card:hover,
+.program-card-active {
+    border-color: rgba(157,255,0,.52);
+    box-shadow: 0 25px 70px rgba(0,0,0,.42);
+}
+
+.program-card:hover {
+    transform: translateY(-7px);
+}
+
+.program-card-top,
+.program-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.program-card-top {
+    color: #777d77;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.program-card-top span:first-child {
+    color: var(--green);
+}
+
+.program-icon {
+    width: 78px;
+    height: 78px;
+    margin: 35px 0 25px;
+    border: 1px solid rgba(157,255,0,.35);
+    border-radius: 19px;
+    display: grid;
+    place-items: center;
+    color: var(--green);
+    font-size: 25px;
+    font-weight: 900;
+    background: rgba(157,255,0,.045);
+    box-shadow: inset 0 0 25px rgba(157,255,0,.04);
+}
+
+.program-card h3 {
+    font-size: 27px;
+    letter-spacing: -.8px;
+    margin-bottom: 13px;
+}
+
+.program-card p {
+    color: #858a85;
+    line-height: 1.62;
+    max-width: 380px;
+}
+
+.program-bottom {
+    position: absolute;
+    left: 27px;
+    right: 27px;
+    bottom: 25px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.07);
+    color: #6e746e;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.program-bottom span:last-child {
+    color: var(--green);
+    font-size: 20px;
+}
+
+.program-arrow {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    z-index: 5;
+    border: 1px solid rgba(157,255,0,.42);
+    border-radius: 50%;
+    background: rgba(2,4,2,.88);
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.program-arrow:hover {
+    background: var(--green);
+    color: #000;
+}
+
+.program-prev {
+    left: -25px;
+}
+
+.program-next {
+    right: -25px;
+}
+
+.program-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.program-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4c514c;
+    transition: .3s;
+}
+
+.program-dot.active {
+    width: 28px;
+    border-radius: 20px;
+    background: var(--green);
+}
+
+.program-marquee {
+    margin-top: 70px;
+    overflow: hidden;
+    border-top: 1px solid rgba(157,255,0,.14);
+    border-bottom: 1px solid rgba(157,255,0,.14);
+    background: rgba(157,255,0,.035);
+    white-space: nowrap;
+}
+
+.program-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    min-width: max-content;
+    padding: 18px 0;
+    animation: programMarquee 28s linear infinite;
+    color: #a9aea9;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.program-marquee-track b {
+    color: var(--green);
+}
+
+@keyframes programMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (max-width: 1050px) {
+    .programs-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .program-card {
+        flex-basis: calc((100% - 18px) / 2);
+    }
+}
+
+@media (max-width: 700px) {
+    .programs-wrap {
+        width: min(100% - 35px, 650px);
+    }
+
+    .programs-section {
+        padding-top: 80px;
+    }
+
+    .programs-heading h2 {
+        letter-spacing: -3px;
+    }
+
+    .program-card {
+        flex-basis: 88%;
+        min-height: 350px;
+    }
+
+    .program-arrow {
+        display: none;
+    }
+
+    .program-track {
+        padding-bottom: 28px;
+    }
+
+    .program-marquee {
+        margin-top: 45px;
+    }
+}
+
+
+
+/* =========================================================
+   SYKSA BRAIN / STRONGER CONCEPTS SECTION
+   Exact user-supplied brain image, fitted — never oversized.
+========================================================= */
+.brain-concept-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 73% 50%, rgba(157,255,0,.10), transparent 25%),
+    #030503;
+  min-height: min(760px, 88vh);
+  display: flex;
+  align-items: center;
+  padding: clamp(70px, 8vh, 105px) 0;
+}
+
+.brain-section-inner {
+  width: min(100% - 80px, 1450px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(360px, .82fr) minmax(500px, 1.18fr);
+  gap: clamp(25px, 5vw, 90px);
+  align-items: center;
+}
+
+.brain-copy {
+  position: relative;
+  z-index: 5;
+}
+
+.brain-kicker {
+  color: var(--green, #9dff00);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.brain-copy h2 {
+  margin: 0;
+  font-size: clamp(48px, 5.5vw, 78px);
+  line-height: .9;
+  letter-spacing: -4px;
+  font-weight: 900;
+}
+
+.brain-copy h2 span {
+  color: var(--green, #9dff00);
+}
+
+.brain-lead {
+  max-width: 530px;
+  color: #a1a6a1;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 26px 0 28px;
+}
+
+.brain-lead strong {
+  color: #fff;
+}
+
+.brain-points {
+  display: grid;
+  gap: 9px;
+  max-width: 540px;
+}
+
+.brain-point {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid rgba(157,255,0,.11);
+  border-radius: 12px;
+  background: rgba(255,255,255,.018);
+}
+
+.brain-point > span {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(157,255,0,.5);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--green, #9dff00);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.brain-point b {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.brain-point small {
+  display: block;
+  color: #777d77;
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+.brain-visual {
+  position: relative;
+  width: min(100%, 680px);
+  height: min(620px, 72vh);
+  min-height: 510px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.brain-image-wrap {
+  position: relative;
+  z-index: 3;
+  width: min(52%, 340px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(157,255,0,.35);
+  box-shadow:
+    0 0 50px rgba(157,255,0,.12),
+    0 0 110px rgba(0,110,255,.12);
+  animation: brainFloat 5.5s ease-in-out infinite;
+}
+
+.brain-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, transparent 45%, rgba(0,0,0,.32));
+  pointer-events: none;
+}
+
+.brain-image-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@keyframes brainFloat {
+  0%,100% { transform: translateY(0) scale(.98); }
+  50% { transform: translateY(-9px) scale(1); }
+}
+
+.brain-orbit {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid rgba(157,255,0,.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-one { width: 58%; height: 58%; animation: orbitPulse 6s ease-in-out infinite; }
+.orbit-two { width: 75%; height: 75%; animation: orbitPulse 7s ease-in-out infinite reverse; }
+.orbit-three { width: 91%; height: 91%; animation: orbitPulse 8s ease-in-out infinite; }
+
+@keyframes orbitPulse {
+  0%,100% { opacity: .45; transform: translate(-50%,-50%) scale(.98); }
+  50% { opacity: 1; transform: translate(-50%,-50%) scale(1.02); }
+}
+
+.formula {
+  position: absolute;
+  z-index: 4;
+  padding: 8px 12px;
+  border: 1px solid rgba(157,255,0,.3);
+  border-radius: 9px;
+  background: rgba(3,7,3,.88);
+  color: #e9ffbf;
+  font-family: Georgia, serif;
+  font-size: clamp(13px, 1.4vw, 19px);
+  box-shadow: 0 0 20px rgba(157,255,0,.07);
+  animation: formulaFloat 4.5s ease-in-out infinite;
+}
+
+.formula-a { top: 9%; left: 18%; }
+.formula-b { top: 15%; right: 11%; animation-delay: -1s; }
+.formula-c { top: 48%; right: 1%; animation-delay: -2s; }
+.formula-d { bottom: 18%; right: 10%; animation-delay: -3s; }
+.formula-e { bottom: 9%; left: 17%; animation-delay: -1.5s; }
+.formula-f { top: 48%; left: 0%; animation-delay: -2.5s; }
+
+@keyframes formulaFloat {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.brain-caption {
+  position: absolute;
+  z-index: 5;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  white-space: nowrap;
+  color: #dce1dc;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.brain-caption span:first-child,
+.brain-caption span:last-child {
+  color: var(--green, #9dff00);
+}
+
+.brain-caption i {
+  width: 25px;
+  height: 1px;
+  background: rgba(157,255,0,.5);
+}
+
+/* Keep the complete section inside a typical laptop viewport. */
+@media (min-width: 1100px) and (max-height: 850px) {
+  .brain-concept-section {
+    min-height: calc(100vh - 90px);
+    padding: 55px 0;
+  }
+
+  .brain-section-inner {
+    gap: 45px;
+  }
+
+  .brain-visual {
+    height: 500px;
+    min-height: 500px;
+  }
+
+  .brain-image-wrap {
+    width: min(47%, 285px);
+  }
+
+  .brain-copy h2 {
+    font-size: clamp(44px, 5vw, 66px);
+  }
+
+  .brain-lead {
+    margin: 18px 0;
+    font-size: 15px;
+  }
+
+  .brain-points {
+    gap: 6px;
+  }
+
+  .brain-point {
+    padding: 9px 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .brain-section-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .brain-copy {
+    text-align: center;
+  }
+
+  .brain-lead,
+  .brain-points {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .brain-visual {
+    height: 530px;
+  }
+
+  .brain-image-wrap {
+    width: min(48%, 300px);
+  }
+}
+
+@media (max-width: 560px) {
+  .brain-concept-section {
+    padding: 70px 0;
+  }
+
+  .brain-section-inner {
+    width: min(100% - 32px, 650px);
+  }
+
+  .brain-copy h2 {
+    letter-spacing: -2.5px;
+  }
+
+  .brain-visual {
+    min-height: 390px;
+    height: 420px;
+  }
+
+  .brain-image-wrap {
+    width: 52%;
+  }
+
+  .formula {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  .formula-f { left: 2%; }
+  .formula-c { right: 0; }
+
+  .brain-caption {
+    bottom: 2%;
+    font-size: 7px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="SYKSA home">
+      <img class="site-logo" src="assets/syksa-logo.png" alt="SYKSA learning App" />
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="mainNav">
+      <a class="active" href="#home">Home</a>
+      <a href="#programs">Programs</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#teachers">Our Teachers</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">APPLY NOW</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">NOW LIVE <span>•</span> CBSE 5–10</div>
+        <h1>LEARN<br><span>BETTER.</span></h1>
+        <p class="hero-lead">Live classes. Real interaction.<br>Stronger concepts. Brighter future.</p>
+        <p class="hero-meta">CBSE / NCERT <span>•</span> Classes 5th–10th</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">APPLY NOW <span>→</span></a>
+          <a class="btn btn-ghost" href="#programs">EXPLORE PROGRAMS</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-frame hero-banner-frame">
+          <img class="hero-banner" src="assets/syksa-hero-banner.jpg" alt="SYKSA Learn Better — live CBSE classes for Classes 5th to 10th" />
+        </div>
+        <div class="orbit-dot one"></div>
+        <div class="orbit-dot two"></div>
+      </div>
+
+      <div class="feature-strip">
+        <div><b>LIVE</b><span>Interactive Classes</span></div>
+        <div><b>REAL-TIME</b><span>Doubt Solving</span></div>
+        <div><b>EXPERT</b><span>Teachers</span></div>
+        <div><b>TRACK</b><span>Progress</span></div>
+        <div><b>SAFE</b><span>Learning</span></div>
+      </div>
+    </section>
+
+    <section class="live-ticker" aria-label="SYKSA learning highlights">
+      <div class="ticker-track">
+        <div class="ticker-item"><span class="ticker-dot"></span> CBSE CLASSES 5–10</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> LIVE CLASSES</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> NCERT BASED LEARNING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> EXPERT TEACHERS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> DOUBT SOLVING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> REGULAR TESTS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> PARENT TRACKING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> RECORDED LECTURES</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> CBSE CLASSES 5–10</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> LIVE CLASSES</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> NCERT BASED LEARNING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> EXPERT TEACHERS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> DOUBT SOLVING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> REGULAR TESTS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> PARENT TRACKING</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> RECORDED LECTURES</div>
+      </div>
+    </section>
+
+    
+
+<section class="brain-concept-section" id="concepts">
+  <div class="brain-section-inner">
+    <div class="brain-copy">
+      <div class="brain-kicker">THE SYKSA METHOD</div>
+      <h2>BUILD<br><span>STRONGER CONCEPTS.</span></h2>
+      <p class="brain-lead">
+        Learning works better when students understand the <strong>why</strong>,
+        not just memorize the answer.
+      </p>
+
+      <div class="brain-points">
+        <div class="brain-point">
+          <span>01</span>
+          <div><b>MATHS</b><small>Logic, patterns & problem solving</small></div>
+        </div>
+        <div class="brain-point">
+          <span>02</span>
+          <div><b>SCIENCE</b><small>Understand ideas through real concepts</small></div>
+        </div>
+        <div class="brain-point">
+          <span>03</span>
+          <div><b>LIVE LEARNING</b><small>Ask, interact and learn in real time</small></div>
+        </div>
+        <div class="brain-point">
+          <span>04</span>
+          <div><b>PRACTICE</b><small>Apply concepts until they become clear</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brain-visual" aria-label="SYKSA concept learning visual">
+      <div class="formula formula-a">F = ma</div>
+      <div class="formula formula-b">E = mc²</div>
+      <div class="formula formula-c">a² + b² = c²</div>
+      <div class="formula formula-d">P = F/A</div>
+      <div class="formula formula-e">v = u + at</div>
+      <div class="formula formula-f">√144 = 12</div>
+
+      <div class="brain-orbit orbit-one"></div>
+      <div class="brain-orbit orbit-two"></div>
+      <div class="brain-orbit orbit-three"></div>
+
+      <div class="brain-image-wrap">
+        <img src="./assets/neuron-cells-with-glowing-in-human-brain-free-vector.jpg" alt="Brain representing stronger concepts and learning">
+      </div>
+
+      <div class="brain-caption">
+        <span>THINK</span>
+        <i></i>
+        <span>UNDERSTAND</span>
+        <i></i>
+        <span>APPLY</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="programs-section section" id="programs">
+  <div class="programs-wrap">
+    <div class="programs-hero">
+      <div class="programs-intro">
+        <div class="section-label">OUR PROGRAMS</div>
+        <h2>BUILD THE<br><span>RIGHT FOUNDATION.</span></h2>
+        <p>Not just homework. Not just marks. <strong>SYKSA helps your child understand concepts, ask questions and build confidence</strong> — from Class 5 to Class 10.</p>
+        <div class="program-trust-row">
+          <span><b>01</b> Strong Concepts</span>
+          <span><b>02</b> Live Teachers</span>
+          <span><b>03</b> Regular Practice</span>
+        </div>
+        <a class="program-cta" href="#contact">EXPLORE CLASSES <span>→</span></a>
+      </div>
+      <div class="program-highlight">
+        <div class="highlight-glow"></div>
+        <div class="highlight-top"><span>CBSE • NCERT</span><b>CLASSES 5–10</b></div>
+        <div class="highlight-equation">x² + y² = r²</div>
+        <div class="highlight-title">LEARN<br><span>WITH PURPOSE.</span></div>
+        <div class="highlight-points">
+          <div><i>✓</i><span>Concept-first teaching</span></div>
+          <div><i>✓</i><span>Interactive live classes</span></div>
+          <div><i>✓</i><span>Tests, practice & progress</span></div>
+        </div>
+        <div class="highlight-ring ring-a"></div><div class="highlight-ring ring-b"></div>
+      </div>
+    </div>
+
+    <div class="program-section-title">
+      <div><span>CHOOSE YOUR PATH</span><h3>One platform. Every stage of learning.</h3></div>
+      <p>Start where your child is. Build the skills they need for what comes next.</p>
+    </div>
+
+    <div class="program-stage">
+      <button class="program-arrow program-prev" aria-label="Previous program">←</button>
+      <div class="program-track">
+        <article class="program-card program-card-active">
+          <div class="program-card-top"><span>5–6</span><span>CLASS</span></div>
+          <div class="program-icon">01</div>
+          <h3>CLASS 5TH – 6TH</h3>
+          <p>Build strong foundation for future success.</p>
+          <div class="program-bottom"><span>BUILD FOUNDATION</span><span>→</span></div>
+        </article>
+        <article class="program-card">
+          <div class="program-card-top"><span>7–8</span><span>CLASS</span></div>
+          <div class="program-icon">02</div>
+          <h3>CLASS 7TH – 8TH</h3>
+          <p>Strengthen concepts and problem solving.</p>
+          <div class="program-bottom"><span>STRENGTHEN CONCEPTS</span><span>→</span></div>
+        </article>
+        <article class="program-card">
+          <div class="program-card-top"><span>9–10</span><span>CLASS</span></div>
+          <div class="program-icon">03</div>
+          <h3>CLASS 9TH – 10TH</h3>
+          <p>Score higher with concept clarity &amp; practice.</p>
+          <div class="program-bottom"><span>PREPARE &amp; IMPROVE</span><span>→</span></div>
+        </article>
+        <article class="program-card">
+          <div class="program-card-top"><span>★</span><span>COMING SOON</span></div>
+          <div class="program-icon">✦</div>
+          <h3>FUTURE PROGRAMS</h3>
+          <p>More classes coming soon.</p>
+          <div class="program-bottom"><span>COMING SOON</span><span>→</span></div>
+        </article>
+      </div>
+      <button class="program-arrow program-next" aria-label="Next program">→</button>
+    </div>
+
+    <div class="program-dots"><span class="program-dot active"></span><span class="program-dot"></span><span class="program-dot"></span><span class="program-dot"></span></div>
+
+    <div class="program-marquee"><div class="program-marquee-track">
+      <span>CBSE CLASSES 5–10</span><b>•</b><span>LIVE CLASSES</span><b>•</b><span>NCERT BASED</span><b>•</b><span>STRONGER CONCEPTS</span><b>•</b><span>REGULAR PRACTICE</span><b>•</b><span>DOUBT SUPPORT</span><b>•</b><span>CBSE CLASSES 5–10</span><b>•</b><span>LIVE CLASSES</span><b>•</b>
+    </div></div>
+  </div>
+</section>
+
+
+    <section class="live section" id="how-it-works">
+      <div class="live-grid">
+        <div class="live-copy">
+          <div class="section-label">HOW SYKSA WORKS</div>
+          <h2>LIVE<br><span>MEANS MORE.</span></h2>
+          <p class="subtitle">Real teachers. Real time. Real interaction.</p>
+          <p class="live-intro">Your child does not just watch a class. They ask, respond, practise and get guidance while the teacher is right there.</p>
+
+          <div class="live-features">
+            <div><span>01</span><strong>Raise Hand</strong><small>Ask questions instantly</small></div>
+            <div><span>02</span><strong>Live Chat</strong><small>Clear doubts in real time</small></div>
+            <div><span>03</span><strong>Interactive Quiz</strong><small>Check understanding live</small></div>
+            <div><span>04</span><strong>Assignments</strong><small>Reinforce every lesson</small></div>
+          </div>
+        </div>
+
+        <div class="live-visual">
+          <div class="live-visual-glow"></div>
+          <img src="assets/live-reference.png" alt="SYKSA live class with teacher, students, chat and interactive tools" />
+          <div class="floating-tag tag-left">REAL-TIME DOUBTS</div>
+          <div class="floating-tag tag-right">INTERACTIVE CLASS</div>
+          <div class="live-corner-label"><b>CBSE • CLASSES 5–10</b><span>Live + Interactive Learning</span></div>
+        </div>
+      </div>
+
+      <div class="metric-row">
+        <div><b>LIVE CLASSES</b><span>Learn with your teacher</span></div>
+        <div><b>DOUBT SUPPORT</b><span>Ask without hesitation</span></div>
+        <div><b>ACTIVE LEARNING</b><span>Quizzes & assignments</span></div>
+        <div><b>BETTER UNDERSTANDING</b><span>Concepts become clearer</span></div>
+      </div>
+    </section>
+
+    <section class="teachers-section section" id="teachers">
+  <div class="teachers-heading">
+    <div>
+      <div class="section-label">OUR TEACHERS</div>
+      <h2>Learn from <span>Experts</span></h2>
+      <div class="heading-mark"></div>
+      <p>Experienced teachers who make learning interesting, simple and effective.</p>
+      <a class="btn btn-ghost" href="#contact">MEET OUR TEACHERS <span>→</span></a>
+    </div>
+
+    <div class="teacher-showcase">
+      <article class="teacher-card">
+        <div class="teacher-photo"><img src="assets/teacher-anjali.png" alt="Anjali Ma'am, Physics Expert"></div>
+        <div class="teacher-info">
+          <h3>Anjali Ma'am</h3>
+          <p>Physics Expert</p>
+          <small>8+ Years Experience</small>
+        </div>
+      </article>
+
+      <article class="teacher-card">
+        <div class="teacher-photo"><img src="assets/teacher-rahul.png" alt="Rahul Sir, Maths Expert"></div>
+        <div class="teacher-info">
+          <h3>Rahul Sir</h3>
+          <p>Maths Expert</p>
+          <small>7+ Years Experience</small>
+        </div>
+      </article>
+
+      <article class="teacher-testimonial">
+        <div class="quote-mark">“</div>
+        <p>SYKSA classes helped my child improve concepts and scores consistently. The teachers are very supportive.</p>
+        <strong>— Parent of Class 8 Student</strong>
+        <div class="testimonial-dots"><i class="active"></i><i></i><i></i><i></i></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta section" id="about">
+      <div class="cta-inner">
+        <div>
+          <div class="section-label">YOUR NEXT STEP</div>
+          <h2>LET YOUR CHILD<br>EXPERIENCE <span>SYKSA.</span></h2>
+          <p>Talk to the SYKSA team about admissions and the right learning program and discover a clearer learning path.</p>
+        </div>
+        <a class="btn btn-primary large" href="#contact">APPLY NOW <span>→</span></a>
+      </div>
+
+      <div class="program-pills">
+        <span class="selected">CBSE 5–10</span>
+        <span>JEE SOON</span>
+        <span>NEET SOON</span>
+        <span>FUTURE PROGRAMS</span>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="contact-copy">
+        <div class="section-label">CONTACT</div>
+        <h2>Let's build a<br><span>better learning path.</span></h2>
+        <p>Talk to the SYKSA team about admissions, classes and the right program for your child.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <label>Name<input required type="text" name="name" placeholder="Parent / Student name"></label>
+        <label>Phone<input required type="tel" name="phone" placeholder="+91"></label>
+        <label>Class<select name="class"><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option></select></label>
+        <label>Message<textarea name="message" rows="4" placeholder="Tell us what you need help with"></textarea></label>
+        <button class="btn btn-primary" type="submit">SEND ENQUIRY <span>→</span></button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#top" aria-label="SYKSA home">
+      <img class="site-logo" src="assets/syksa-logo.png" alt="SYKSA learning App" />
+    </a>
+    <p>© 2026 SYKSA Technology Services Pvt. Ltd. All rights reserved.</p>
+    <a href="#top">BACK TO TOP ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+<script>
+
+/* =========================================================
+   PROGRAM SECTION SLIDER
+========================================================= */
+
+const programTrack = document.querySelector(".program-track");
+const programNext = document.querySelector(".program-next");
+const programPrev = document.querySelector(".program-prev");
+const programDots = document.querySelectorAll(".program-dot");
+
+if (programTrack && programNext && programPrev) {
+    const programCards = document.querySelectorAll(".program-card");
+
+    function programStep() {
+        const card = programCards[0];
+        return card ? card.getBoundingClientRect().width + 18 : 350;
+    }
+
+    function updateProgramDots() {
+        if (!programDots.length) return;
+
+        const max = programTrack.scrollWidth - programTrack.clientWidth;
+        const ratio = max > 0 ? programTrack.scrollLeft / max : 0;
+        const index = Math.min(
+            programDots.length - 1,
+            Math.round(ratio * (programDots.length - 1))
+        );
+
+        programDots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+    }
+
+    programNext.addEventListener("click", () => {
+        programTrack.scrollBy({
+            left: programStep(),
+            behavior: "smooth"
+        });
+    });
+
+    programPrev.addEventListener("click", () => {
+        programTrack.scrollBy({
+            left: -programStep(),
+            behavior: "smooth"
+        });
+    });
+
+    programTrack.addEventListener("scroll", updateProgramDots);
+
+    programDots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+            const max = programTrack.scrollWidth - programTrack.clientWidth;
+            const target = max * (i / Math.max(1, programDots.length - 1));
+
+            programTrack.scrollTo({
+                left: target,
+                behavior: "smooth"
+            });
+        });
+    });
+}
+
+</script>
+</body>
+</html>
